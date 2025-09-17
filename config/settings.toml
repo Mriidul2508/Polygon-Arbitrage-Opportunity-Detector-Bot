@@ -1,12 +1,25 @@
-[package]
-name = "polygon-arbitrage-bot"
-version = "0.1.0"
-edition = "2021"
+# Bot settings
+check_interval_seconds = 30 # How often to check for opportunities
+minimum_profit_threshold = 1.0 # Minimum USDC profit to log an opportunity
 
-[dependencies]
-ethers = { version = "2.0", features = ["abigen"] }
-tokio = { version = "1", features = ["full"] }
-serde = { version = "1.0", features = ["derive"] }
-config = "0.13"
-dotenv = "0.15"
-eyre = "0.6"
+# Trade parameters
+# Amount of token_a to use for the simulated trade (e.g., 1 WETH)
+amount_in = 1.0
+# Simplified gas cost in USDC to be subtracted from the profit
+simulated_gas_cost_usdc = 2.0
+
+# Token Addresses on Polygon
+[tokens]
+weth = "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
+usdc = "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+decimals_a = 18 # WETH decimals
+decimals_b = 6  # USDC decimals
+
+# DEX contract addresses on Polygon
+[[dexes]]
+name = "QuickSwap"
+router_address = "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff"
+
+[[dexes]]
+name = "SushiSwap"
+router_address = "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"
